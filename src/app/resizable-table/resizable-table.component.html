@@ -1,0 +1,7 @@
+<app-grid [dataSource]="dataSource" [columns]="columns" [cellTemplateRef]="columnTemplateRef" [addRemoveColumn]="true" (rowClick)="onOpenDetailsPanel($event)">
+  <ng-template #columnTemplateRef let-row="row" let-column="column">
+      <ng-container *ngIf="column.field === 'test'">{{ row[column.field]?.time | date:'medium' }}</ng-container>
+      <ng-container *ngIf="column.field === 'type'"><i [ngClass]="{'some-icon':row[column.field] === 'test', 'another-icon':row[column.field] === 'test1' }"></i></ng-container>
+      <ng-container *ngIf="column.field !== 'type' && column.field !== 'test2'">{{ row[column.field] }}</ng-container>
+  </ng-template>
+</app-grid>

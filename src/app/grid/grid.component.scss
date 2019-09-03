@@ -1,0 +1,82 @@
+
+mat-cell,
+mat-footer-cell,
+mat-header-cell {
+  width: 200px;
+  flex: none;
+  justify-content: right;
+}
+
+.grid-wrapper {
+  // display: flex;
+  width: 100%;
+  padding-right: 8px;
+
+  .mat-table {
+    max-height: 550px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    color: #fff;
+
+    .mat-header-row {
+      background-color: #423d3d;
+      z-index: 5 !important;
+    }
+
+    .mat-row:nth-child(even) {
+      background-color: #666;
+    }
+
+    .mat-row:nth-child(odd) {
+      background-color: #ccc;
+    }
+
+    mat-row,
+    mat-header-row {
+      border-bottom-width: 0px;
+    }
+
+    mat-cell {
+      &:first-child {
+        padding-left: 8px;
+      }
+      &:last-child {
+        padding-right: 0px;
+      }
+    }
+
+    .mat-header-cell {
+      &.resizable {
+        cursor: col-resize;
+      }
+      font-size: 0.8rem;
+      font-weight: bolder;
+      text-transform: uppercase;
+      &:first-child {
+        padding-left: 8px;
+      }
+      mat-icon {
+        cursor: pointer;
+        position: relative;
+        right: -3px;
+        top: 7px;
+      }
+      &:last-child {
+        padding-right: 0px;
+      }
+
+      .cell-header {
+        cursor: default;
+      }
+    }
+  }
+}
+
+.menu-button {
+  min-width: 200px;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -1,0 +1,30 @@
+<div class="grid-wrapper">
+    <mat-table [dataSource]="data" cdkDropListGroup="" [trackBy]="trackByFn" (scroll)="onTableScroll($event)">
+        <ng-container *ngFor="let column of sortColumns(columns); trackBy: trackByFn; let i = index" [matColumnDef]="column.field">
+            <ng-container *ngIf="!!column.show">
+                <mat-header-cell *matHeaderCellDef="" (mousedown)="onResizeColumn($event, i)" [class.resizable]="resizable">
+                    <div class="cell-header" *ngIf="column.field === 'plusAction'">
+                        <mat-icon [matMenuTriggerFor]="addHideColumns">add</mat-icon>
+                    </div>
+                    <div class="cell-header" *ngIf="column.field !== 'plusAction'"><span>{{ column.name }}</span></div>
+                </mat-header-cell>
+            </ng-container>
+            <ng-container>
+                <mat-cell *matCellDef="let row">
+                    <ng-template *ngTemplateOutlet="cellTemplateRef; context:{row: row, column: column}" [ngIf]="cellTemplateRef"></ng-template>
+                    <ng-container *ngIf="!cellTemplateRef">{{ row[column.field] }}</ng-container>
+                </mat-cell>
+            </ng-container>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" #MatTableRowRef (click)="onRowClick(row)"></mat-row>
+    </mat-table>
+</div>
+<mat-menu #addHideColumns="matMenu">
+    <ng-container *ngFor="let col of columnsDef">
+        <div class="menu-button" mat-menu-item="mat-menu-item" (click)="$event.stopPropagation();" *ngIf="col.field !== 'plusAction'">
+            <div class="menu-label">{{col.name}}</div>
+            <mat-checkbox [(ngModel)]="col.show" (click)="onAddRemoveColumn(col, $event);" name="showHideColumns"></mat-checkbox>
+        </div>
+    </ng-container>
+</mat-menu>
