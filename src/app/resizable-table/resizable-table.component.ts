@@ -42,8 +42,12 @@ export class ResizableTableComponent implements OnInit {
   constructor() {
     this.dataSource = new MatTableDataSource<any>(DATA);
   }
-  
+
   ngOnInit() {
+  }
+
+  onOpenDetailsPanel(): void {
+    alert('Row clicked');
   }
 
 }

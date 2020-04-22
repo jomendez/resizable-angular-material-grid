@@ -145,12 +145,12 @@ export class GridComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!this.resizable) {
       return;
     }
-
+    const eventParent = (event.target as HTMLInputElement).parentElement;
     this.checkResizing(event, index);
     this.currentResizeIndex = index;
     this.pressed = true;
     this.startX = event.pageX;
-    this.startWidth = (event.target as HTMLInputElement).clientWidth;
+    this.startWidth = eventParent.clientWidth;
     event.preventDefault();
     this.mouseMove(index);
   }
@@ -186,6 +186,7 @@ export class GridComponent implements OnInit, AfterViewInit, OnDestroy {
         this.currentResizeIndex = -1;
         this.resizableMousemove();
         this.resizableMouseup();
+        document.querySelectorAll('.mat-cell, mat-header-cell').forEach( (el: HTMLElement) => el.style.borderRight = 'unset');
       }
     });
   }
@@ -202,6 +203,10 @@ export class GridComponent implements OnInit, AfterViewInit, OnDestroy {
       if (newWidth > 50) {
         this.columns[index].actualWidth = width;
         this.setColumnWidth(this.columns[index]);
+        
+        Array.from(document.getElementsByClassName('mat-column-' + this.columns[index].field))
+        .forEach((el: HTMLDivElement)=> el.style.borderRight = '1px dotted black');
+
         this.columns[j].actualWidth = newWidth;
         this.setColumnWidth(this.columns[j]);
       }

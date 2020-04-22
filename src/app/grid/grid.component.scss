@@ -1,3 +1,9 @@
+:host {
+    --background-color-even: #e6e6e6;
+    --background-color-odd: #fff;
+    --background-color-header: #b7b7b7;
+  }
+
 
 mat-cell,
 mat-footer-cell,
@@ -8,7 +14,6 @@ mat-header-cell {
 }
 
 .grid-wrapper {
-  // display: flex;
   width: 100%;
   padding-right: 8px;
 
@@ -20,35 +25,44 @@ mat-header-cell {
     color: #fff;
 
     .mat-header-row {
-      background-color: #423d3d;
+      background-color: var(--background-color-header);
       z-index: 5 !important;
     }
 
     .mat-row:nth-child(even) {
-      background-color: #666;
+      background-color: var(--background-color-even);
     }
 
     .mat-row:nth-child(odd) {
-      background-color: #ccc;
+      background-color: var(--background-color-odd);
     }
 
-    mat-row,
-    mat-header-row {
+    .mat-row,
+    .mat-header-row {
       border-bottom-width: 0px;
     }
 
-    mat-cell {
-      &:first-child {
-        padding-left: 8px;
+    .mat-header-cell {
+      &:hover {
+        background-color: #dcdcdc;
       }
+    }
+
+    .mat-cell {
+      margin-left: 4px;
+      box-sizing: border-box;
       &:last-child {
         padding-right: 0px;
       }
     }
 
     .mat-header-cell {
+      display: flex;
+      justify-content: space-between;
       &.resizable {
-        cursor: col-resize;
+        .handler {
+          cursor: col-resize;
+        }
       }
       font-size: 0.8rem;
       font-weight: bolder;
@@ -56,11 +70,8 @@ mat-header-cell {
       &:first-child {
         padding-left: 8px;
       }
-      mat-icon {
+      .mat-icon {
         cursor: pointer;
-        position: relative;
-        right: -3px;
-        top: 7px;
       }
       &:last-child {
         padding-right: 0px;
@@ -68,6 +79,16 @@ mat-header-cell {
 
       .cell-header {
         cursor: default;
+        width: 100%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        margin-left: 4px;
+      }
+
+      .handler {
+        width: 10px;
+        height: 50px;
       }
     }
   }

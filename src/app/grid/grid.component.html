@@ -2,11 +2,12 @@
     <mat-table [dataSource]="data" cdkDropListGroup="" [trackBy]="trackByFn" (scroll)="onTableScroll($event)">
         <ng-container *ngFor="let column of sortColumns(columns); trackBy: trackByFn; let i = index" [matColumnDef]="column.field">
             <ng-container *ngIf="!!column.show">
-                <mat-header-cell *matHeaderCellDef="" (mousedown)="onResizeColumn($event, i)" [class.resizable]="resizable">
+                <mat-header-cell *matHeaderCellDef="" [class.resizable]="resizable">
                     <div class="cell-header" *ngIf="column.field === 'plusAction'">
                         <mat-icon [matMenuTriggerFor]="addHideColumns">add</mat-icon>
                     </div>
                     <div class="cell-header" *ngIf="column.field !== 'plusAction'"><span>{{ column.name }}</span></div>
+                    <div class="handler"  (mousedown)="onResizeColumn($event, i)" ></div>
                 </mat-header-cell>
             </ng-container>
             <ng-container>
