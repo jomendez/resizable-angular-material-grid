@@ -7,6 +7,8 @@ You can find the component: `src/app/grid`
 
 Example of how to use the component: `src/app/resizable-table`
 
+![resizable-grid](https://user-images.githubusercontent.com/8228498/79938155-cad98500-8429-11ea-9a74-4f78728551b1.gif)
+
 ## Clone and install dependencies
 
 ```bash
