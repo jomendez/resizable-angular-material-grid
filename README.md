@@ -1,6 +1,8 @@
 
 # Angular material resizable grid component (with example)
 
+![image](https://user-images.githubusercontent.com/8228498/79929668-652ece00-8414-11ea-90f4-25fecf22dea5.png)
+
 You can find the component: `src/app/grid`
 
 Example of how to use the component: `src/app/resizable-table`
